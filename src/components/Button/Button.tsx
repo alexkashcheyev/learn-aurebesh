@@ -15,8 +15,8 @@ export function Button({children}: ButtonProps) {
   ])
 
   return <div className={containerClass}>
-    <div className={buttonClass}>
+    <button className={buttonClass}>
       {children}
-    </div>
+    </button>
   </div>
 }

@@ -6,6 +6,7 @@ export interface AppSettings {
   aurebeshItalic: boolean;
   latinBold: boolean;
   latinItalic: boolean;
+  replacedLetters: string[];
   update: (newSettings: Partial<AppSettings>) => Promise<void>;
 }
 
@@ -21,6 +22,7 @@ const defaultSettings = {
     aurebeshItalic: false,
     latinBold: false,
     latinItalic: false,
+    replacedLetters: [],
   }
 
 export function SettingsProvider({children}: any) {
@@ -50,4 +52,6 @@ export function mockUseSettings(overrideSettings: Partial<AppSettings>) {
   };
 
   jest.spyOn(settingsModule, 'useSettings').mockReturnValue(settings);
+
+  return settings;
 }
