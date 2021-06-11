@@ -26,6 +26,7 @@ export function ActionButton({testId, onClick, children, disabled = false}: Acti
         !disabled && onClick && onClick(event);
       }}
       disabled={disabled}
+      type="button"
     >
         {children}
     </button>

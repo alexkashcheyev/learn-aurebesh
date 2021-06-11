@@ -164,5 +164,21 @@ describe('Quote page', () => {
 
       expect(driver.getQuoteContent()).toEqual(oldQuoteContent);
     });
+
+    it('should be disabled if minimum speed reached', () => {
+      const driver = new QuotePageDriver({
+        overrideSettings: {
+          speed: 0,
+        }
+      });
+      
+      act(() => driver.clickSlowDown());
+
+      expect(
+        driver.updateRequested({
+          speed: expect.anything(),
+        }),
+      ).toEqual(false);
+    });
   });
 })

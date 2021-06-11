@@ -6,7 +6,6 @@ import { ActionPanel } from "../ActionPanel/ActionPanel";
 import { ActionButton } from "../ActionButton/ActionButton";
 import React, { useState } from "react";
 import { AppSettings, getLettersToAdd, LETTERS_PER_QUOTE, useSettings } from "../../domain/settings";
-import { REPLACEMENT_ORDER } from "../../domain/replacement";
 import { Link }from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -15,17 +14,11 @@ function newQuote() {
   return sample(QUOTES);
 }
 
-function nextLetter(replaced: string[], order: string[]) {
-  if (replaced.length === order.length) {
-    return undefined;
-  } else {
-    return order.find(letter => !replaced.includes(letter));
-  }
-}
-
 export function QuotePage() {
   const [ quote, setQuote ] = useState(newQuote());
   const { update, lettersToAdd, speed } = useSettings();
+
+  console.log({speed})
 
   const nextQuote = (overrideUpdate?: Partial<AppSettings>) => {
     update({
@@ -47,13 +40,14 @@ export function QuotePage() {
         <ActionButton
           testId="slow-down-btn"
           onClick={() => update({speed: speed - 1})}
+          disabled={speed === 0}
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} />
         </ActionButton>
 
         <ActionButton
           testId="next-quote-btn"
-          onClick={() => nextQuote()}
+          onClick={() => nextQuote({})}
         >
           <FontAwesomeIcon icon={faAngleRight}  />
         </ActionButton>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as settingsModule from './settings';
 
 export interface AppSettings {
@@ -9,7 +9,7 @@ export interface AppSettings {
   replacedLetters: string[];
   speed: number;
   lettersToAdd: number;
-  update: (newSettings: Partial<AppSettings>) => Promise<void>;
+  update: (newSettings: Partial<AppSettings>) => void;
 }
 
 export const DEFAULT_SPEED = 3;
@@ -45,16 +45,16 @@ const defaultSettings = {
 export function SettingsProvider({children}: any) {
   const [ settings, setSettings ] = useState<AppSettings>({
     ...defaultSettings,
-    update: (newSettings: Partial<AppSettings>) => {
-      setSettings({
-        ...settings,
-        ...newSettings
-      })
-      return Promise.resolve();
-    }
-  });
+  } as any);
 
-  return <SettingsContext.Provider value={settings}>{children}</SettingsContext.Provider>
+  const update = (newSettings: Partial<AppSettings>) => {
+    setSettings({
+      ...settings,
+      ...newSettings
+    });
+  }
+ 
+  return <SettingsContext.Provider value={{...settings, update}}>{children}</SettingsContext.Provider>
 }
 
 export function useSettings(): AppSettings {
