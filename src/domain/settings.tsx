@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { DEFAULT_TEXT } from './consts';
+import * as settingsModule from './settings';
 
 export interface AppSettings {
   aurebeshBold: boolean;
   aurebeshItalic: boolean;
   latinBold: boolean;
   latinItalic: boolean;
-  text: string[];
   update: (newSettings: Partial<AppSettings>) => Promise<void>;
 }
 
@@ -17,14 +16,17 @@ export interface FontSettings {
 
 const SettingsContext = React.createContext<AppSettings>(undefined as any);
 
-export function SettingsProvider({children}: any) {
-  const [ settings, setSettings ] = useState<AppSettings>({
+const defaultSettings = {
     aurebeshBold: false,
     aurebeshItalic: false,
     latinBold: false,
     latinItalic: false,
-    text: DEFAULT_TEXT,
-    update: (newSettings) => {
+  }
+
+export function SettingsProvider({children}: any) {
+  const [ settings, setSettings ] = useState<AppSettings>({
+    ...defaultSettings,
+    update: (newSettings: Partial<AppSettings>) => {
       setSettings({
         ...settings,
         ...newSettings
@@ -38,4 +40,14 @@ export function SettingsProvider({children}: any) {
 
 export function useSettings(): AppSettings {
   return useContext(SettingsContext);
+}
+
+export function mockUseSettings(overrideSettings: Partial<AppSettings>) {
+  const settings = {
+    ...defaultSettings,
+    update: jest.fn(),
+    overrideSettings
+  };
+
+  jest.spyOn(settingsModule, 'useSettings').mockReturnValue(settings);
 }

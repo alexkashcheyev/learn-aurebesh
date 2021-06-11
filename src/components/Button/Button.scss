@@ -1,0 +1,11 @@
+.button-container {
+  padding: .5rem;
+
+  .button {
+    padding: .5rem 1rem;
+    border: #ccc 1px solid;
+    text-decoration: none !important;
+    display: flex;
+    justify-content: center;
+  }
+}

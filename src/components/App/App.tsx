@@ -1,14 +1,25 @@
 import React from 'react';
 import { SettingsProvider } from '../../domain/settings';
-import { MainContent } from '../MainContent/MainContent';
-import { SideBar } from '../SideBar/SideBar';
-import s from './App.scss';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { SettingsPage } from '../pages/SettingsPage';
+import { QuotePage } from '../pages/QuotePage';
+import { HomePage } from '../pages/HomePage';
+import './App.scss';
 
 export function App() {
   return <SettingsProvider>
-    <div className={s.wrapper}>
-      <MainContent />
-      <SideBar />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/settings">
+          <SettingsPage />
+        </Route>
+        <Route path="/quote">
+          <QuotePage />
+        </Route>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+    </Router>
   </SettingsProvider>
 }
