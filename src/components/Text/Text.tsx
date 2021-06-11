@@ -4,12 +4,13 @@ import './Text.scss';
 
 interface TextProps {
   children: any;
+  testId?: string;
 }
 
-export function Text({children}: TextProps) {
+export function Text({children, testId}: TextProps) {
   const className = buildClassName(['text'])
 
-  return <p className={className}>
+  return <p className={className} data-testid={testId}>
     {children}
   </p>
 }
