@@ -78,7 +78,7 @@ export function QuotePage() {
     if (replacedLetters.length === 0) {
       update({ lettersToAdd: 1 });
     }
-  }, [replacedLetters, update])
+  }, [replacedLetters])
 
   useEffect(() => {
     global.scrollTo(0, 0);
