@@ -7,19 +7,19 @@ interface TrainingWordProps {
 }
 
 export function TrainingWord({ value, replacedCharacters }: TrainingWordProps) {
-  const chars = value.split('');
-  const className = buildClassName([
-    'training-word'
-  ]);
+  const chars = value.split("");
+  const className = buildClassName(["training-word"]);
 
-  return <div className={className}>
-    {chars.map(
-      (char, index) => <TrainingCharacter
-        character={char}
-        aurebesh={replacedCharacters.includes(char.toLowerCase())} 
-        key={index}
-      />
-      )}
-    <span> </span>
-  </div>
+  return (
+    <div className={className}>
+      {chars.map((char, index) => (
+        <TrainingCharacter
+          character={char}
+          aurebesh={replacedCharacters.includes(char.toLowerCase())}
+          key={index}
+        />
+      ))}
+      <span> </span>
+    </div>
+  );
 }

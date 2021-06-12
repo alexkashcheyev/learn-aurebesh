@@ -14,12 +14,12 @@
     .training-character {
       font-family: monospace;
       display: inline-block;
-      min-width: .5em;
+      min-width: 0.5em;
       height: 1em;
       font-weight: bold;
 
       &.aurebesh {
-        font-size: .75em;
+        font-size: 0.75em;
         font-weight: normal;
         font-family: Aurebesh;
       }

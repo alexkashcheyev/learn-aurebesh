@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import "../common.scss";
 
 .page-wrapper {
   position: absolute;
@@ -15,7 +15,7 @@
 
   .page {
     flex: 1;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     overflow-y: auto;
     width: 100%;
     border: $secondary-light-color 1px solid;

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import * as settingsModule from './settings';
+import React, { useContext, useState } from "react";
+import * as settingsModule from "./settings";
 
 export interface AppSettings {
   replacedLetters: string[];
@@ -10,38 +10,43 @@ export interface AppSettings {
 
 export const DEFAULT_SPEED = 3;
 
-export const LETTERS_PER_QUOTE = [ // new letters per quote
-  0.05,   // 0
-  0.1,    // 1
-  0.25,   // 2
-  0.5,    // 3
-  0.75,   // 4
-  1,      // 5
-  1.5,    // 6
-  2,      // 7
-]
+export const LETTERS_PER_QUOTE = [
+  // new letters per quote
+  0.05, // 0
+  0.1, // 1
+  0.25, // 2
+  0.5, // 3
+  0.75, // 4
+  1, // 5
+  1.5, // 6
+  2, // 7
+];
 
 const SettingsContext = React.createContext<AppSettings>(undefined as any);
 
 export const defaultSettings = {
-    replacedLetters: [],
-    speed: DEFAULT_SPEED,
-    lettersToAdd: 1,
-  }
+  replacedLetters: [],
+  speed: DEFAULT_SPEED,
+  lettersToAdd: 1,
+};
 
-export function SettingsProvider({children}: any) {
-  const [ settings, setSettings ] = useState<AppSettings>({
+export function SettingsProvider({ children }: any) {
+  const [settings, setSettings] = useState<AppSettings>({
     ...defaultSettings,
   } as any);
 
   const update = (newSettings: Partial<AppSettings>) => {
     setSettings({
       ...settings,
-      ...newSettings
+      ...newSettings,
     });
-  }
- 
-  return <SettingsContext.Provider value={{...settings, update}}>{children}</SettingsContext.Provider>
+  };
+
+  return (
+    <SettingsContext.Provider value={{ ...settings, update }}>
+      {children}
+    </SettingsContext.Provider>
+  );
 }
 
 export function useSettings(): AppSettings {
@@ -56,10 +61,10 @@ export function mockUseSettings(overrideSettings: Partial<AppSettings>) {
   const settings = {
     ...defaultSettings,
     update: jest.fn(),
-    ...overrideSettings
+    ...overrideSettings,
   };
 
-  jest.spyOn(settingsModule, 'useSettings').mockReturnValue(settings);
+  jest.spyOn(settingsModule, "useSettings").mockReturnValue(settings);
 
   return settings;
 }

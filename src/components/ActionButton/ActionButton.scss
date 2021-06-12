@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import "../common.scss";
 
 .action-button-wrapper {
   display: flex;
@@ -14,7 +14,7 @@
     border: 1px solid $light-color;
     height: 4rem;
     width: 4rem;
-    box-shadow: 0 0 0.25rem .05rem $light-color;
+    box-shadow: 0 0 0.25rem 0.05rem $light-color;
     cursor: pointer;
 
     &:active {
@@ -27,12 +27,12 @@
       font-weight: bold;
       text-transform: uppercase;
     }
-    
+
     &.default {
       background-color: $secondary-light-color;
       color: $light-color;
     }
-    
+
     &.disabled {
       cursor: not-allowed;
       color: $secondary-light-color;

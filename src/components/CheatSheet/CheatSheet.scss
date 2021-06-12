@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import "../common.scss";
 
 .cheat-sheet-wrapper {
   display: flex;
@@ -11,18 +11,18 @@
     align-items: center;
 
     .cheat-sheet-latin {
-      margin-right: .25rem;
+      margin-right: 0.25rem;
     }
 
     .cheat-sheet-aurebesh {
-      margin-left: .25rem;
+      margin-left: 0.25rem;
       font-size: 1.5em;
       font-family: Aurebesh;
     }
   }
 
   .cheat-sheet-progressbar {
-    height: .25rem;
+    height: 0.25rem;
     position: absolute;
     bottom: 0;
     left: 0;
