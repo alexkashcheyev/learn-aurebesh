@@ -14,7 +14,7 @@ export function HomePage() {
     <Text>Aurebesh is basically just a font, so you don't need to learn a whole new language to read it.</Text>
     <Text>You only need to memorize the alphabet.</Text>
     <Text>I'll give you some simple exercises to gradually learn the letters.</Text>
-    <Text>It should be very easy: you will read quotes from Star Wars, and every next quote will have a new Aurebesh symbol in it.</Text>
+    <Text>It should be very easy: you will read quotes from Star Wars, and from time to time a new Aurebesh symbol will appear in them.</Text>
     <Text>You can adjust the learning speed if you feel out of temp.</Text>
     <Text>May the Force be with you.</Text>
     <Link to="/quote">

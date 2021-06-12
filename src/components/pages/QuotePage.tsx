@@ -70,7 +70,7 @@ export function QuotePage() {
             )
       )
     : QUOTES;
-  console.log({fittingQuotes, replacedLetters})
+
   const [ quote, setQuote ] = useState(sample(fittingQuotes));
   const [ freshLetters, setFreshLetters ] = useState<string[]>([]);
 
