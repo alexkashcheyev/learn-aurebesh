@@ -1,3 +1,5 @@
+@import '../common.scss';
+
 .cheat-sheet-wrapper {
   display: flex;
   height: 100%;
@@ -17,5 +19,13 @@
       font-size: 1.5em;
       font-family: Aurebesh;
     }
+  }
+
+  .cheat-sheet-progressbar {
+    height: .25rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $light-color;
   }
 }

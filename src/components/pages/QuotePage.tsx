@@ -72,7 +72,6 @@ export function QuotePage() {
     : QUOTES;
 
   const [ quote, setQuote ] = useState(sample(fittingQuotes));
-  const [ freshLetters, setFreshLetters ] = useState<string[]>([]);
 
   useEffect(() => {
     if (replacedLetters.length === 0) {
@@ -99,10 +98,6 @@ export function QuotePage() {
     });
 
     setQuote(sample(quotes));
-
-    if (lettersAdded) {
-      setFreshLetters(newLetters);
-    }
 
     update({
       lettersToAdd:
@@ -133,7 +128,6 @@ export function QuotePage() {
                 (letter, index) => index !== replacedLetters.length - 1
               )
             });
-            setFreshLetters([]);
           }}
           disabled={speed === 0}
         >
@@ -159,7 +153,7 @@ export function QuotePage() {
       </ActionPanel>}
 
       header={
-        <CheatSheet letters={freshLetters} />
+        <CheatSheet progress={replacedLetters.length / REPLACEMENT_ORDER.length} />
       }
   >
     <TrainingText 

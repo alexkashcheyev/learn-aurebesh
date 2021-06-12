@@ -26,12 +26,16 @@
     min-height: 2rem;
     width: 100%;
     max-width: 1200px;
+    border-bottom: $secondary-light-color 1px solid;
+    position: relative;
   }
 
   .page-footer {
+    border-top: $secondary-light-color 1px solid;
     flex: 0;
     min-height: 5rem;
     width: 100%;
     max-width: 1200px;
+    position: relative;
   }
 }

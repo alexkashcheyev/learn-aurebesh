@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSettings } from '../../domain/settings';
 import { buildClassName } from '../utils';
 import './CheatSheet.scss';
 
 interface CheatSheetProps {
-  letters: string[];
+  progress: number;
 }
 
-export function CheatSheet({letters}: CheatSheetProps) {
+export function CheatSheet({progress}: CheatSheetProps) {
+  const { replacedLetters } = useSettings();
+
   const wrapperClass = buildClassName([
     'cheat-sheet-wrapper'
   ]);
@@ -22,6 +25,11 @@ export function CheatSheet({letters}: CheatSheetProps) {
   const aurebeshClass = buildClassName([
     'cheat-sheet-aurebesh'
   ]);
+  const progressbarClass = buildClassName([
+    'cheat-sheet-progressbar'
+  ])
+
+  const letters = replacedLetters.slice(-3);
 
   return <div className={wrapperClass}>
     {letters.map((letter, index) =>
@@ -31,5 +39,6 @@ export function CheatSheet({letters}: CheatSheetProps) {
         <div className={aurebeshClass}>{letter}</div>
       </div>
     )}
+    <div className={progressbarClass} style={{width: `${progress * 100}%`}}></div>
   </div>
 }
