@@ -1,0 +1,21 @@
+.cheat-sheet-wrapper {
+  display: flex;
+  height: 100%;
+
+  .cheat-sheet-entry {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+    .cheat-sheet-latin {
+      margin-right: .25rem;
+    }
+
+    .cheat-sheet-aurebesh {
+      margin-left: .25rem;
+      font-size: 1.5em;
+      font-family: Aurebesh;
+    }
+  }
+}

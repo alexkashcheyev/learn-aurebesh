@@ -1,12 +1,13 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { buildClassName } from "../utils";
 import './Button.scss';
 
 interface ButtonProps {
   children: any;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function Button({children}: ButtonProps) {
+export function Button({children, onClick}: ButtonProps) {
   const containerClass = buildClassName([
     'button-container'
   ])
@@ -15,7 +16,10 @@ export function Button({children}: ButtonProps) {
   ])
 
   return <div className={containerClass}>
-    <button className={buttonClass}>
+    <button 
+      className={buttonClass}
+      onClick={onClick}
+    >
       {children}
     </button>
   </div>

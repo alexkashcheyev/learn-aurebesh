@@ -2,10 +2,6 @@ import React, { useContext, useState } from 'react';
 import * as settingsModule from './settings';
 
 export interface AppSettings {
-  aurebeshBold: boolean;
-  aurebeshItalic: boolean;
-  latinBold: boolean;
-  latinItalic: boolean;
   replacedLetters: string[];
   speed: number;
   lettersToAdd: number;
@@ -25,21 +21,12 @@ export const LETTERS_PER_QUOTE = [ // new letters per quote
   2,      // 7
 ]
 
-export interface FontSettings {
-  bold: boolean;
-  italic: boolean;
-}
-
 const SettingsContext = React.createContext<AppSettings>(undefined as any);
 
-const defaultSettings = {
-    aurebeshBold: false,
-    aurebeshItalic: false,
-    latinBold: false,
-    latinItalic: false,
+export const defaultSettings = {
     replacedLetters: [],
     speed: DEFAULT_SPEED,
-    lettersToAdd: 0,
+    lettersToAdd: 1,
   }
 
 export function SettingsProvider({children}: any) {

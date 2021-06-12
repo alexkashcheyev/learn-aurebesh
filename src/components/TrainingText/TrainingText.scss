@@ -1,0 +1,28 @@
+.training-text {
+  font-size: 150%;
+  display: flex;
+  flex-wrap: wrap;
+
+  &.source {
+    margin-top: 2rem;
+  }
+
+  .training-word {
+    display: inline;
+    margin-right: 1em;
+
+    .training-character {
+      font-family: monospace;
+      display: inline-block;
+      min-width: .5em;
+      height: 1em;
+      font-weight: bold;
+
+      &.aurebesh {
+        font-size: .75em;
+        font-weight: normal;
+        font-family: Aurebesh;
+      }
+    }
+  }
+}
