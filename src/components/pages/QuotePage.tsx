@@ -1,7 +1,7 @@
 import { Page } from "../Page/Page";
 import { Text } from '../Text/Text';
 import { sample } from 'lodash';
-import { QUOTES } from "../../domain/quotes";
+import { Quote, QUOTES } from "../../domain/quotes";
 import { ActionPanel } from "../ActionPanel/ActionPanel";
 import { ActionButton } from "../ActionButton/ActionButton";
 import React, { useState } from "react";
@@ -9,23 +9,80 @@ import { AppSettings, getLettersToAdd, LETTERS_PER_QUOTE, useSettings } from "..
 import { Link }from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { REPLACEMENT_ORDER } from "../../domain/replacement";
 
-function newQuote() {
-  return sample(QUOTES);
+export function increaseDifficulty({
+  count,
+  ignoreLetters,
+  quotes,
+  newLetters = []
+} : {
+  count: number;
+  ignoreLetters: string[];
+  quotes: Quote[];
+  newLetters?: string[];
+}): { quotes: Quote[], newLetters: string[] } {
+  if (count < 1) {
+    return {
+      quotes,
+      newLetters,
+    }
+  }
+
+  const newLetter = REPLACEMENT_ORDER.find(
+    letter =>
+      !ignoreLetters.includes(letter) &&
+      !!quotes.find(quote => quote.content.includes(letter))
+  );
+
+  if (!newLetter) {
+    return {
+      quotes,
+      newLetters
+    }
+  }
+
+  return increaseDifficulty({
+    count: count - 1,
+    ignoreLetters: [
+      ...ignoreLetters,
+      newLetter
+    ],
+    quotes: quotes.filter(quote => quote.content.includes(newLetter)),
+    newLetters: [ 
+      ...newLetters,
+      newLetter 
+    ]
+  })
 }
 
 export function QuotePage() {
-  const [ quote, setQuote ] = useState(newQuote());
-  const { update, lettersToAdd, speed } = useSettings();
-
-  console.log({speed})
+  const { update, lettersToAdd, speed, replacedLetters } = useSettings();
+  const [ quote, setQuote ] = useState(sample(QUOTES));
 
   const nextQuote = (overrideUpdate?: Partial<AppSettings>) => {
+    const lettersAdded = 
+      replacedLetters.length === REPLACEMENT_ORDER.length 
+      ? 0
+      : Math.floor(lettersToAdd);
+
+    const { quotes, newLetters} = increaseDifficulty({
+      count: lettersAdded,
+      ignoreLetters: replacedLetters,
+      quotes: QUOTES
+    });
+
+    setQuote(sample(quotes));
+
     update({
-      lettersToAdd: lettersToAdd + getLettersToAdd(speed),
+      lettersToAdd:
+        (lettersToAdd - lettersAdded) + getLettersToAdd(speed),
+      replacedLetters: [
+        ...replacedLetters,
+        ...newLetters,
+      ],
       ...overrideUpdate,
     });
-    setQuote(newQuote());
   }
 
   return <Page 
