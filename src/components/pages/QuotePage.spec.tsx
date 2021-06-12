@@ -25,11 +25,11 @@ export class QuotePageDriver {
   }
 
   getQuoteContent() {
-    return this.page.getByTestId('quote-content').textContent;
+    return this.page.getByTestId('quote-content').textContent.trim();
   }
 
   getQuoteSource() {
-    return this.page.getByTestId('quote-source').textContent;
+    return this.page.getByTestId('quote-source').textContent.trim();
   }
 
   clickNext() {
@@ -59,6 +59,10 @@ export class QuotePageDriver {
 }
 
 describe('Quote page', () => {
+  beforeEach(() => {
+    jest.spyOn(global, 'scrollTo').mockImplementation(() => {});
+  })
+
   afterEach(() => {
     jest.restoreAllMocks();
   })
@@ -84,7 +88,7 @@ describe('Quote page', () => {
     });
 
     it('should increase lettersToAdd counter', () => {
-      const driver = new QuotePageDriver({});
+      const driver = new QuotePageDriver({ overrideSettings: { lettersToAdd: 0.5 } });
       const oldLettersToAdd = driver.settings.lettersToAdd;
 
       act(() => driver.clickNext());

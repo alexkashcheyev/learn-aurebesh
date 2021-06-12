@@ -81,7 +81,7 @@ export function QuotePage() {
   }, [replacedLetters, update])
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    global.scrollTo(0, 0);
   }, [quote]);
 
 

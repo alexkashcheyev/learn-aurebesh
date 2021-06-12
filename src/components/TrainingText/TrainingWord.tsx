@@ -19,6 +19,7 @@ export function TrainingWord({ value, replacedCharacters }: TrainingWordProps) {
         aurebesh={replacedCharacters.includes(char.toLowerCase())} 
         key={index}
       />
-    )}
+      )}
+    <span> </span>
   </div>
 }
