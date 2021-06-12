@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useSettings } from '../../domain/settings';
 import { ActionPanel } from '../ActionPanel/ActionPanel';
 import { ActionButton } from '../ActionButton/ActionButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 export function HomePage() {
   const { update } = useSettings();
@@ -19,7 +21,7 @@ export function HomePage() {
                 update({ replacedLetters: [] })
               }}
             >
-              Start
+              <FontAwesomeIcon icon={faPlay} size="2x" />
             </ActionButton>
           </Link>
         </ActionPanel>
