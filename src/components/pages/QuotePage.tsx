@@ -78,6 +78,7 @@ export function QuotePage() {
     if (replacedLetters.length === 0) {
       update({ lettersToAdd: 1 });
     }
+  // eslint-disable-next-line
   }, [replacedLetters])
 
   useEffect(() => {
