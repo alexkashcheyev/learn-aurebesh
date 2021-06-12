@@ -120,7 +120,7 @@ export function QuotePage() {
 
         <Link to="/">
           <ActionButton testId="settings-btn">
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} size="2x" />
           </ActionButton>
         </Link>
 
@@ -137,14 +137,15 @@ export function QuotePage() {
           }}
           disabled={speed === 0}
         >
-          <FontAwesomeIcon icon={faAngleDoubleLeft} />
+          <FontAwesomeIcon icon={faAngleDoubleLeft} size="2x" />
         </ActionButton>
 
         <ActionButton
           testId="next-quote-btn"
           onClick={() => nextQuote({})}
+          priority="primary"
         >
-          <FontAwesomeIcon icon={faAngleRight}  />
+          <FontAwesomeIcon icon={faAngleRight} size="2x"  />
         </ActionButton>
 
         <ActionButton
@@ -152,12 +153,13 @@ export function QuotePage() {
           onClick={() => nextQuote({speed: speed + 1})}
           disabled={speed === LETTERS_PER_QUOTE.length - 1}
         >
-          <FontAwesomeIcon icon={faAngleDoubleRight} />
+          <FontAwesomeIcon icon={faAngleDoubleRight} size="2x" />
         </ActionButton>
 
       </ActionPanel>}
+
       header={
-        freshLetters.length > 0 && <CheatSheet letters={freshLetters} />
+        <CheatSheet letters={freshLetters} />
       }
   >
     <TrainingText 

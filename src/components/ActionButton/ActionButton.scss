@@ -1,15 +1,44 @@
+@import '../common.scss';
+
 .action-button-wrapper {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
+  background: transparent;
 
   .action-button {
     display: block;
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 1px solid $light-color;
     height: 4rem;
     width: 4rem;
+    box-shadow: 0 0 0.25rem .05rem $light-color;
+    cursor: pointer;
+
+    &:active {
+      box-shadow: none;
+    }
+
+    &.primary {
+      background-color: $light-color;
+      color: $dark-color;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    &.default {
+      background-color: $secondary-light-color;
+      color: $light-color;
+    }
+    
+    &.disabled {
+      cursor: not-allowed;
+      color: $secondary-light-color;
+      background-color: $dark-color;
+      border-color: $secondary-light-color;
+      box-shadow: none;
+    }
   }
 }
