@@ -6,6 +6,7 @@ import { ActionButton } from "../ActionButton/ActionButton";
 import React, { useEffect, useState } from "react";
 import {
   AppSettings,
+  DEFAULT_SPEED,
   getLettersToAdd,
   LETTERS_PER_QUOTE,
   useSettings,
@@ -112,7 +113,7 @@ export function QuotePage() {
   return (
     <Page
       footer={
-        <ActionPanel>
+        <ActionPanel progress={speed / (LETTERS_PER_QUOTE.length - 1)}>
           <Link to="/">
             <ActionButton testId="settings-btn">
               <FontAwesomeIcon icon={faHome} size="2x" />

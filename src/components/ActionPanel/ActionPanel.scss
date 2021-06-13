@@ -1,3 +1,5 @@
+@import "../common.scss";
+
 .action-panel {
   display: flex;
   height: 100%;
@@ -7,5 +9,13 @@
   > * {
     display: block;
     flex: 1;
+  }
+
+  .action-panel-progressbar {
+    height: 0.1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $light-color;
   }
 }
